@@ -35,7 +35,6 @@ void check(char* dir_name){
 
                 x = lstat(path, &buf);
                 if(x==0 && S_ISLNK(buf.st_mode)){
-                        printf("%s is link\n",path);
                         continue;
                 }
 
@@ -44,11 +43,12 @@ void check(char* dir_name){
 
                 }else{
                         close(fd);
-                        printf("%s success\n",path);
                         if(x==0 && S_ISDIR(buf.st_mode)){
-                                printf("%s is dir\n",path);
 
                                 check(path);
+                        }else{
+                                                        printf("%s success\n",path);
+
                         }
                 }
                 
